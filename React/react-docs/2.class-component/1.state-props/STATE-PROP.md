@@ -34,10 +34,10 @@ this.setState((currentState, props) => {
     return { username: "username updated" }
 }, () => {
     console.log(this.state.username)
-    >> username updated
+    >> "username updated"
 })
 console.log(this.state.username)
->> username initial
+>> "username initial"
 ```
 Các bạn có thể viết ngắn gọn lại như thế này nếu chỉ muốn `update state` chứ không cần đến `currentState` và `props`(truyền 1 object vào setState):
 ```
@@ -47,10 +47,10 @@ this.setState({
     username: "username updated" 
 }, () => {
     console.log(this.state.username)
-    >> username updated
+    >> "username updated"
 })
 console.log(this.state.username)
->> username initial
+>> "username initial"
 ```
 
 Một ví dụ về imutability trong `setState`.
@@ -71,6 +71,7 @@ this.setState({
 
 ## 3. props
 - props là một object chứa các `key: value` mà bạn truyền vào Component khi bạn dùng nó
+- Cú pháp khi truyền một prop: `key=value`, nếu value là variable bạn cần đặt nó trong cặp dấu `{ } (String Interpolation)`
 
 Vd:
 ```
@@ -92,9 +93,9 @@ const prop2 = "This is prop 2"
 ```
 
 ## Tóm tắt
-1. State là 1 object lưu trữ trạng thái của Component
-2. this.setState là một hàm dùng để cập nhật lại state mà bạn định nghĩa
-3. props là object chứa các cặp `key: value` mà bạn đã truyền vào khi bạn dùng Component
+1. `State` là 1 object lưu trữ trạng thái của `Component`
+2. `this.setState` là một hàm dùng để cập nhật lại `state` mà bạn định nghĩa
+3. `props` là object chứa các cặp `key: value` mà bạn đã truyền vào khi bạn dùng `Component`
 
 Ví dụ thực tế về props mà mình đã làm đó là build 1 Input layout, các bạn có thể nhìn vào để tham khảo:
 ```
