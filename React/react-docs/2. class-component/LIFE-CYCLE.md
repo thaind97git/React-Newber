@@ -5,18 +5,19 @@
 ## 1. MOUNTING 
 ```
 1.componentWillMount.
-2.render
-3.componentDidMount
+2.static getDerivedStateFromProps
+3.render
+4.componentDidMount
 ```
 
 - Một `Component` thực hiện `Mounting` chỉ khi nó được render lần đầu tiên.
 
 - Khi render lần thứ 2 nó sẽ chạy một `life-cycle` khác
 
-- Việc mouting một `Component` nó sẽ chạy theo thứ tự từ 1 -> 3
+- Việc mouting một `Component` nó sẽ chạy theo thứ tự từ 1 -> 4
 
 ### I. componentWillMount
-- Phương thức này được gọi trước khi Component được render.
+- Phương thức này được gọi đâu tiên tại trang thái `MOUTING (Initial)` của `Component`.
 
 - Nó tương tự như `$(document).ready()` trog jquery
 
@@ -24,7 +25,18 @@
 
 - Kể từ phiên bản `16.999.0`, phương thức này không được dùng nữa [Link](https://reactjs.org/docs/react-component.html#unsafe_componentwillmount)
 
-### II. render
+### II. getDerivedStateFromProps
+
+- `static getDerivedStateFromProps(props, state)`
+
+- Phương thức này được gọi trước phương thức render của `Component`. Và nó được gọi ở cả hai trạng thái `MOUNTING` và `UPDATING`
+
+    ```
+
+    ```
+- Phương thức này mình ít khi sử dụng nên nếu bạn nào muốn tìm hiểu thì có thể follow theo [React Docs](https://reactjs.org/docs/react-component.html#static-getderivedstatefromprops).
+
+### III. render
 - Đây là phương thức chính mà các bạn sẽ thao tác nhiều nhất
 
 - dùng để render ra React-DOM 
@@ -51,10 +63,10 @@ Vd:
 ```
 Nếu bạn không muốn dùng `root element` để bao bọc ở ngoài. Bạn có thể dùng [React.Fragment](https://reactjs.org/docs/fragments.html). Mình sẽ giải thích về `React.Fragment` rõ hơn trong folder others nhé !
 
-### III. componentDidMount
+### IV. componentDidMount
 - Phương thức này được gọi sau khi render được kích hoạt xong 
 
-- Vì khi chạy đến đây, DOM đã được sinh ra nên hàm này được sử dụng rất nhiều
+- Vì khi chạy đến đây, `the tree DOM` đã được sinh ra nên hàm này được sử dụng rất nhiều
 
 - Mình thường hay call API trong phương thức này, rồi sau đó dùng phương thức `setState` để render dữ liệu.
 
@@ -91,12 +103,13 @@ Nếu bạn không muốn dùng `root element` để bao bọc ở ngoài. Bạn
 
 *- Không nên dùng deepclone hoặc JSON.stringify() để so sánh trong phương thức này. Nó sẽ làm giảm hiệu suất*
 ### II. getDerivedStateFromProps
-    // Cần người support
-
+    // Theo dõi ở MOUNTING
 ### III. render
     // Theo dõi ở MOUNTING
 ### IV. getSnapshotBeforeUpdate
-    // Cần người support
+- `getSnapshotBeforeUpdate(prevProps, prevState)`
+
+- Vì hàm này mình ít khi sử dụng, nên nếu muốn các bạn có thể tự tìm hiểu thêm [tại đây](https://reactjs.org/docs/react-component.html#getsnapshotbeforeupdate).
 ### IV. componentDidUpdate
 - `componentDidUpdate(prevProps, prevState, snapshot)`
 - `snapshot` sẽ là giá trị được trả về từ phương thức `getSnapshotBeforeUpdate` (Default là undefined)

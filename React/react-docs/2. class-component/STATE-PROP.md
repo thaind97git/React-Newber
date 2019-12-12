@@ -7,12 +7,10 @@
 - Khai báo `state` cũng tương tự như khai báo một  object bình thường, nhưng nó là nơi để React nhận biết `Component` có nên `re-render` hay không
 - Nó luôn luôn phải là một object với `muilti keys` nếu không sẽ có warning: `Warning: App.state: must be set to an object or null`
 - Giá trị các key trong `this.state` sẽ là giá trị khởi tạo của bạn
-- Nếu bạn có khởi tạo `constructor`, thì phải khai báo là `this.state` và nằm trong constructor.
-- Nếu không khởi tạo `constructor`, khai báo nó là `state`
     
-    Note:
+**Note:**
         
-    - Khuyến khích khai báo với `this.state`.
+*- Không update state bằng việc gán trực tiếp giá trị, vì như vậy `Component` sẽ không re-render. Vd: `this.state.comment = "Hello"`*
 
 ## 2. this.setState
 Cú pháp: `this.setState(updater[, callback])`
@@ -24,9 +22,11 @@ callback: () => { ... }
 ```
 - Đây là hàm dùng để set lại `this.state`
 - Đây là hàm asynchronous, vì vậy nếu bạn muốn làm gì đó dựa vào `state` mà bạn vừa thay đổi thì bạn phải làm nó bên trong hàm callback
-- Khi dùng `setState`, nên áp dụng imutability. Có nghĩa là coppy state ra một object mới
+- Phương thức `setState` sẽ merge object bạn truyền vào `setState` vào state hiện tại của `Component` theo cơ chế `shallow clone`
+- Khi dùng `setState`, nên áp dụng `imutability (deep clone)`. Có nghĩa là coppy state ra một object mới
 - Thông tin thêm: [imutability](https://viblo.asia/p/immutability-va-immutablejs-trong-reactjs-m68Z0OrdKkG), [deep clone and shadow clone](https://viblo.asia/p/su-khac-nhau-giua-deep-copy-va-shallow-copy-trong-javascript-4dbZN3qylYM)
 
+Một ví dụ về cơ chế `Asynchronous` của `setState`
 ```
 this.state = { username: "username initial" }
 
